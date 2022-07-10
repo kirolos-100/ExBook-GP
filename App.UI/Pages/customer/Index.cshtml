@@ -1,0 +1,184 @@
+﻿@page
+@using App.UI.Configurations
+@model App.UI.Pages.Customer.IndexModel
+@{
+    ViewBag.Title = "Library Home page";
+
+    Layout = "/Pages/Shared/CustomerLayout.cshtml";
+}
+<link href="~/css/CustomerCssFiles/chome.css" rel="stylesheet" />
+
+
+
+
+<!-- header section ends -->
+<!-- bottom navbar  -->
+<!-- home section starts  -->
+
+<section class="home" id="home">
+
+    <div class="row">
+
+        <div class="content">
+            <h3>Read ..Learn ..Enjoy</h3>
+            <p>You will find your books here. We have a large collection of books in various sections, whether scientific, literary or other. Browse our website and we promise that we will provide best possible service for you.</p>
+            <a href="#" class="btn">Read now</a>
+        </div>
+
+        <div class="swiper books-slider">
+            <div class="swiper-wrapper">
+                <a href="#" class="swiper-slide"><img src="~/assets/images/book3.png" alt=""></a>
+                <a href="#" class="swiper-slide"><img src="~/assets/images/book-2.png" alt=""></a>
+                <a href="#" class="swiper-slide"><img src="~/assets/images/book-3.png" alt=""></a>
+                <a href="#" class="swiper-slide"><img src="~/assets/images/book-4.png" alt=""></a>
+                <a href="#" class="swiper-slide"><img src="~/assets/images/book-5.png" alt=""></a>
+                <a href="#" class="swiper-slide"><img src="~/assets/images/book-6.png" alt=""></a>
+            </div>
+            <img src="~/assets/images/stand.png" class="stand" alt="">
+        </div>
+
+    </div>
+
+</section>
+
+<!-- featured section starts  -->
+
+<section class="featured" id="featured">
+
+    <h1 class="heading"> <span>featured books</span> </h1>
+
+
+    <div class="swiper featured-slider">
+        <div class="swiper-wrapper">
+
+            @foreach (var item in Model.FeatureBooks)
+            {
+
+                <div class="swiper-slide box">
+                    <div class="icons">
+                        <a href="/@Global.UrlName/book-details/@item.Id" class="fas fa-search"></a>
+                    </div>
+                    <div class="image">
+                        <a href="/@Global.UrlName/book-details/@item.Id">
+                            <img src="@item.PhotoPath" alt="">
+                        </a>
+                    </div>
+                    <div class="content">
+                        <a href="/@Global.UrlName/book-details/@item.Id">
+
+                            <h3>@item.Name</h3>
+                            <div class="price">$@item.BookPriceAfterDiscount <span>$@item.Price.ToString("####")</span></div>
+                            </a>
+                            <a href="/@Global.UrlName/book-details/@item.Id" class="btn" style=" width: -webkit-fill-available;">DETAILS</a>
+                    </div>
+                </div>
+
+            }
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+</section>
+
+<!-- featured section ends -->
+<!-- newsletter section starts -->
+
+<section class="newsletter">
+
+    <form action="">
+        <h3>subscribe for latest updates</h3>
+        <input type="email" name="" placeholder="enter your email" id="" class="box">
+        <input type="submit" value="subscribe" class="btn">
+    </form>
+
+</section>
+
+<!-- newsletter section ends -->
+<!-- arrivals section starts  -->
+
+<section class="arrivals" id="arrivals">
+
+    <h1 class="heading"> <span>new arrivals</span> </h1>
+
+    <div class="swiper arrivals-slider">
+        <div class="swiper-wrapper">
+            @foreach (var Book in Model.NewArrivals.Take(4))
+            {
+                <a href="/@Global.UrlName/book-details/@Book.Id" class="swiper-slide box">
+                    <div class="image">
+                        <img src="@Book.PhotoPath" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>@Book.Name</h3>
+                        @if (Book.Price.ToString("####").Equals(Book.BookPriceAfterDiscount))
+                        {<div class="price">$@Book.Price.ToString("####")</div>
+                    }
+                    else
+                    { <div class="price">$@Book.BookPriceAfterDiscount <span>$@Book.Price.ToString("####")</span></div>}
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </a>
+            }
+        </div>
+    </div>
+    <div class="swiper arrivals-slider">
+        <div class="swiper-wrapper">
+            @foreach (var Book in Model.NewArrivals.Skip(4).Take(4))
+            {
+                <a href="/@Global.UrlName/book-details/@Book.Id" class="swiper-slide box">
+                    <div class="image">
+                        <img src="@Book.PhotoPath" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>@Book.Name</h3>
+                        @if (Book.Price.ToString("####").Equals(Book.BookPriceAfterDiscount))
+                        {<div class="price">$@Book.Price.ToString("####")</div>
+                    }
+                    else
+                    { <div class="price">$@Book.BookPriceAfterDiscount <span>$@Book.Price.ToString("####")</span></div>}
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </a>
+            }
+        </div>
+    </div>
+</section>
+
+<!-- arrivals section ends -->
+<!-- deal section starts  -->
+<section class="deal">
+
+    <div class="content">
+        <h3>deal of the day</h3>
+        <h1>Exchange your book </h1>
+        <p>Create an account for you on our site to get the service of exchanging your books with others .</p>
+        <a href="#" class="btn"> Try it now</a>
+    </div>
+
+    <div class="image">
+        <img src="~/assets/images/deal-img.jpg" alt="">
+    </div>
+
+</section>
+
+<!-- deal section ends -->
+
+
+
+<div class="loader-container">
+    <img src="~/assets/images/loader-imgb.gif" alt="" />
+
+</div>
+

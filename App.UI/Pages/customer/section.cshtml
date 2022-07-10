@@ -1,0 +1,19 @@
+﻿@page 
+@model App.UI.Pages.customer.sectionModel
+@{
+    ViewBag.Title = "Sections page";
+
+    Layout = "/Pages/Shared/CustomerLayout.cshtml";
+    var CsectionCss = "/css/CustomerCssFiles/csection.css";
+}
+<link href="@CsectionCss" rel="stylesheet" />
+
+
+<section id="team">
+    <div class="container">
+        @foreach (var item in Model.CategoryDetails)
+        {
+        <button type="submit" class="btn btn1">@item.categoryName <span class="numOfbooks">@item.NumBooks</span> </button>
+        }
+    </div>
+</section>
